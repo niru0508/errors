@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SoftwareProject {
+
+    uint256 public developersCount;
+    uint256 public projectYear;
+
+    function approvalCommittee(uint256 _developersApproval, uint256 _projectYear) external {
+        // Set developers count
+        developersCount = _developersApproval;
+
+        // Assert that the project year is 2010 or later
+        assert(_projectYear >= 2010);
+
+        // Considered as Release Candidate if approved by 10 developers
+        if (_developersApproval >= 10) {
+            revert("Considered as Release Candidate");
+        }
+    }
+
+    function developerEligibility(uint256 _developerExperience) external pure {
+        // Require minimum experience of 3 years for developers
+        require(_developerExperience >= 3, "Not Considered as developer");
+    }
+
+    // Additional functions and logic for the software project can be added below
+}
